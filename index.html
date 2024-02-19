@@ -3,42 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab6 Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #555;
-        }
-    </style>
+    <title>Sum of Multiples of 3 and 5</title>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My GitHub Website</h1>
-    </header>
-    <div class="container">
-        <h2>About Me</h2>
-        <p>This is a simple website created using HTML. You can replace this text with information about yourself.</p>
-        <h2>Contact Me</h2>
-        <p>You can contact me via email: your.email@example.com</p>
-    </div>
+    <h2>Find the Sum of Multiples of 3 and 5</h2>
+    <label for="inputNumber">Enter a number:</label>
+    <input type="number" id="inputNumber">
+    <button onclick="calculateSum()">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        function calculateSum() {
+            var inputNumber = parseInt(document.getElementById("inputNumber").value);
+            var sum = 0;
+
+            for (var i = 1; i <= inputNumber; i++) {
+                if (i % 3 === 0 || i % 5 === 0) {
+                    sum += i;
+                }
+            }
+
+            document.getElementById("result").textContent = "The sum of multiples of 3 and 5 up to " + inputNumber + " is: " + sum;
+        }
+    </script>
 </body>
 </html>
