@@ -3,28 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sum of Multiples of 3 and 5</title>
+    <title>Simple Chess</title>
+    <style>
+        .board {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
+        }
+        .square {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .white { background-color: #f0d9b5; }
+        .black { background-color: #b58863; }
+    </style>
 </head>
 <body>
-    <h2>Find the Sum of Multiples of 3 and 5</h2>
-    <label for="inputNumber">Enter a number:</label>
-    <input type="number" id="inputNumber">
-    <button onclick="calculateSum()">Calculate</button>
-    <p id="result"></p>
+    <div class="board">
+        <!-- Create 64 squares -->
+        <!-- Use data attributes to represent position -->
+        <!-- data-row and data-col will represent the position -->
+        <!-- of the square on the board -->
+        <!-- Add event listener to handle piece movement -->
+        <!-- Add data-piece attribute to represent piece type -->
+        <!-- Example: data-piece="king", data-piece="queen", etc. -->
+    </div>
 
     <script>
-        function calculateSum() {
-            var inputNumber = parseInt(document.getElementById("inputNumber").value);
-            var sum = 0;
+        document.addEventListener("DOMContentLoaded", () => {
+            const board = document.querySelector('.board');
 
-            for (var i = 1; i <= inputNumber; i++) {
-                if (i % 3 === 0 || i % 5 === 0) {
-                    sum += i;
+            // Create the chessboard
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const square = document.createElement('div');
+                    square.dataset.row = row;
+                    square.dataset.col = col;
+                    square.classList.add('square', (row + col) % 2 === 0 ? 'white' : 'black');
+                    board.appendChild(square);
                 }
             }
 
-            document.getElementById("result").textContent = "The sum of multiples of 3 and 5 up to " + inputNumber + " is: " + sum;
-        }
+            // Add event listener for square clicks
+            board.addEventListener('click', (event) => {
+                const clickedSquare = event.target;
+                const piece = clickedSquare.dataset.piece;
+
+                if (piece) {
+                    // If a piece is clicked, log its position and type
+                    console.log(`Piece: ${piece}, Row: ${clickedSquare.dataset.row}, Col: ${clickedSquare.dataset.col}`);
+                } else {
+                    // If an empty square is clicked, log its position
+                    console.log(`Empty Square, Row: ${clickedSquare.dataset.row}, Col: ${clickedSquare.dataset.col}`);
+                }
+            });
+        });
     </script>
 </body>
 </html>
